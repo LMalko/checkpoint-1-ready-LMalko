@@ -36,11 +36,14 @@ def export_to_file(data, filename='class_data.txt', mode='a'):
     :raises ValueError: if mode other than 'w' or 'a' was given. Error message:
         'Wrong write mode'
     """
-    if mode not in ["w", "a"]:
-        raise ValueError('Wrong write mode')
-    else:
-        with open(filename, mode, encoding="utf-8") as myfile:
+    if mode == 'w':
+        with open(filename, "w", encoding="utf-8") as myfile:
             myfile.write(str(data) + "\n")
+    if mode == 'a':
+        with open(filename, "a", encoding="utf-8") as myfile:
+            myfile.write(str(data) + "\n")
+    else:
+        raise ValueError('Wrong write mode')
 
 
 def get_student_by_id(uid, students):
@@ -56,12 +59,11 @@ def get_student_by_id(uid, students):
     :returns: specific student's data
     :rtype: list
     """
-    with open(file_name, "r", encoding='utf-8') as file_name:
-        file_name = file_name.readlines()
-        for line in file_name:
-            if uid in line:
-                return line
-        raise ValueError('Student does not exist')
+    for line in students:
+        if line[0] == uid:
+            return line
+        else:
+            raise ValueError('Student does not exist')
 
 
 def get_students_of_class(students, class_name):
@@ -95,11 +97,11 @@ def get_youngest_student(students):
     :returns: youngest student
     :rtype: list
     """
-    class_a = []
-    class_b = []
-    for line in students:
-        if line[4] = "A":
-        if line[4] = "A":
+    min = students[0]
+    for line in students[1:]:
+        if line[3] > min[3]:
+            min = line
+    return min
 
 
 def get_youngest_student_of_class(students, class_name):
@@ -117,6 +119,27 @@ def get_youngest_student_of_class(students, class_name):
     :returns: youngest student from given class
     :rtype: list
     """
+    class_a = []
+    class_b = []
+    for line in students:
+        if line[4] == "A":
+            class_a.append(line)
+        if line[4] == "B":
+            class_b.append(line)
+    if class_name == "A":
+        min = class_a[0]
+        for line in class_a[1:]:
+            if line[3] > min[3]:
+                min = line
+        return min
+    if class_name == "B":
+        min = class_b[0]
+        for line in class_b[1:]:
+            if line[3] > min[3]:
+                min = line
+        return min
+    else:
+        raise ValueError("No such class.")
 
 
 def get_oldest_student(students):
@@ -132,6 +155,11 @@ def get_oldest_student(students):
     :returns: oldest student
     :rtype: list
     """
+    max = students[0]
+    for line in students[1:]:
+        if line[3] < max[3]:
+            max = line
+    return max
 
 
 def get_oldest_student_of_class(students, class_name):
@@ -149,6 +177,27 @@ def get_oldest_student_of_class(students, class_name):
     :returns: oldest student
     :rtype: list
     """
+    class_a = []
+    class_b = []
+    for line in students:
+        if line[4] == "A":
+            class_a.append(line)
+        if line[4] == "B":
+            class_b.append(line)
+    if class_name == "A":
+        max = class_a[0]
+        for line in class_a[1:]:
+            if line[3] < max[3]:
+                max = line
+        return max
+    if class_name == "B":
+        max = class_b[0]
+        for line in class_b[1:]:
+            if line[3] < max[3]:
+                max = line
+        return max
+    else:
+        raise ValueError("No such class.")
 
 
 def get_average_grade_of_students(students):
@@ -164,6 +213,10 @@ def get_average_grade_of_students(students):
     :returns: average grade of students value
     :rtype: float
     """
+    total_grades = 0
+    for item in students:
+        total_grades += int(item[5])
+    return total_grades / len(students)
 
 
 def get_average_presence_of_students(students):
@@ -181,6 +234,10 @@ def get_average_presence_of_students(students):
     :returns: average presence of students rounded to int
     :rtype: int
     """
+    attendance = float(0)
+    for item in students:
+        attendance += float(item[6])
+    return attendance / len(students)
 
 
 def generate_id(current_ids):

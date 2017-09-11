@@ -61,7 +61,9 @@ def main():
         else:
             break
     #if users_choice == "0":
+
     #if users_choice == "1":
+    
     if users_choice == "2":
         student_data = data.import_data_from_file('class_data.txt')
         display.print_student_info(student_data)
