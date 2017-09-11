@@ -38,10 +38,10 @@ def export_to_file(data, filename='class_data.txt', mode='a'):
     """
     if mode == 'w':
         with open(filename, "w", encoding="utf-8") as myfile:
-            myfile.write(str(data) + "\n")
+            myfile.write(str(data))
     if mode == 'a':
         with open(filename, "a", encoding="utf-8") as myfile:
-            myfile.write(str(data) + "\n")
+            myfile.write(str(data))
     else:
         raise ValueError('Wrong write mode')
 
