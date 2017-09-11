@@ -1,3 +1,4 @@
+import random
 """
 This module should use random module to generate_id
 """
@@ -15,6 +16,11 @@ def import_data_from_file(filename='class_data.txt'):
     :returns: list of lists representing students' data
     :rtype: list
     """
+    with open(filename, "r", encoding="utf-8") as myfile:
+        students = []
+        for line in myfile:
+            students.append(line.strip().split(','))
+        return students
 
 
 def export_to_file(data, filename='class_data.txt', mode='a'):

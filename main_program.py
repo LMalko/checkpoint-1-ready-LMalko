@@ -31,6 +31,10 @@ def delete_student_by_id(students, uid):
     :returns: updated students list
     :rtype: list
     """
+    #with open(students, "a") as myfile:
+
+
+#delete_student_by_id(class_data.txt, uid)
 
 
 def main():
@@ -43,6 +47,7 @@ def main():
     You should create new functions and call them from main whenever it can
     make the code cleaner
     """
+
     print("Hello to JERZYBOT. Please select Your option.")
     print("1 --> Create new student.")
     print("2 --> Delete student.")
@@ -52,9 +57,18 @@ def main():
     while True:
         users_choice = int(input("Choose:"))
         if users_choice not in [1, 2, 3, 4, 0]:
+            print("Please choose correct number.")
             continue
         else:
             break
+    #if users_choice == 1:
+    #if users_choice == 2:
+    #if users_choice == 3:
+    if users_choice == 4:
+        student_data = data.import_data_from_file('class_data.txt')
+        display.print_students_list(student_data)
+    if users_choice == 0:
+        quit()
     
 
 
