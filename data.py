@@ -36,6 +36,11 @@ def export_to_file(data, filename='class_data.txt', mode='a'):
     :raises ValueError: if mode other than 'w' or 'a' was given. Error message:
         'Wrong write mode'
     """
+    if mode not in ["w", "a"]:
+        raise ValueError('Wrong write mode')
+    else:
+        with open(filename, mode, encoding="utf-8") as myfile:
+            myfile.write(str(data) + "\n")
 
 
 def get_student_by_id(uid, students):
@@ -51,6 +56,12 @@ def get_student_by_id(uid, students):
     :returns: specific student's data
     :rtype: list
     """
+    with open(file_name, "r", encoding='utf-8') as file_name:
+        file_name = file_name.readlines()
+        for line in file_name:
+            if uid in line:
+                return line
+        raise ValueError('Student does not exist')
 
 
 def get_students_of_class(students, class_name):
@@ -64,6 +75,11 @@ def get_students_of_class(students, class_name):
     :returns: students from given class only
     :rtype: list
     """
+    all_class = []
+    for line in students:
+        if line[4] == class_name:
+            all_class.append(line)
+    return all_class
 
 
 def get_youngest_student(students):
@@ -79,6 +95,11 @@ def get_youngest_student(students):
     :returns: youngest student
     :rtype: list
     """
+    class_a = []
+    class_b = []
+    for line in students:
+        if line[4] = "A":
+        if line[4] = "A":
 
 
 def get_youngest_student_of_class(students, class_name):

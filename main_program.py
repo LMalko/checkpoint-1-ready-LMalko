@@ -49,25 +49,26 @@ def main():
     """
 
     print("Hello to JERZYBOT. Please select Your option.")
-    print("1 --> Create new student.")
-    print("2 --> Delete student.")
-    print("3 --> Select student.")
-    print("4 --> Print all students.")
-    print("0 --> Create new student.")
+    menu_commands = ["Create new student.", "Delete student.", "Select student.",
+                     "Print all students.", "Create new student."]
+    display.print_program_menu(menu_commands)
     while True:
-        users_choice = int(input("Choose:"))
-        if users_choice not in [1, 2, 3, 4, 0]:
+        users_choice = input("Choose:")
+        display.print_command_result(users_choice)
+        if users_choice not in ["0", "1", "2", "3", "4"]:
             print("Please choose correct number.")
             continue
         else:
             break
-    #if users_choice == 1:
-    #if users_choice == 2:
-    #if users_choice == 3:
-    if users_choice == 4:
+    #if users_choice == "0":
+    #if users_choice == "1":
+    if users_choice == "2":
+        student_data = data.import_data_from_file('class_data.txt')
+        display.print_student_info(student_data)
+    if users_choice == "3":
         student_data = data.import_data_from_file('class_data.txt')
         display.print_students_list(student_data)
-    if users_choice == 0:
+    if users_choice == "4":
         quit()
     
 
