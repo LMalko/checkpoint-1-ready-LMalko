@@ -34,7 +34,7 @@ def delete_student_by_id(students, uid):
     #with open(students, "a") as myfile:
 
 
-#delete_student_by_id(class_data.txt, uid)
+    #delete_student_by_id(class_data.txt, uid)
 
 
 def main():
@@ -54,16 +54,15 @@ def main():
     display.print_program_menu(menu_commands)
     while True:
         users_choice = input("Choose:")
-        display.print_command_result(users_choice)
         if users_choice not in ["0", "1", "2", "3", "4"]:
             print("Please choose correct number.")
             continue
         else:
             break
-    #if users_choice == "0":
-
-    #if users_choice == "1":
-    
+    if users_choice == "0":
+        print("Create new student.")
+    if users_choice == "1":
+        print("Delete student.")
     if users_choice == "2":
         student_data = data.import_data_from_file('class_data.txt')
         display.print_student_info(student_data)
@@ -72,6 +71,7 @@ def main():
         display.print_students_list(student_data)
     if users_choice == "4":
         quit()
+    display.print_command_result(users_choice)
     
 
 

@@ -234,10 +234,14 @@ def get_average_presence_of_students(students):
     :returns: average presence of students rounded to int
     :rtype: int
     """
-    attendance = float(0)
+    attendance = 0
     for item in students:
-        attendance += float(item[6])
-    return attendance / len(students)
+        attendance += int(item[6])
+        result = attendance / len(students)
+    if result % int(result) < 0.5:
+        return int(result)
+    else:
+        return int(result) + 1
 
 
 def generate_id(current_ids):
