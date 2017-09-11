@@ -1,3 +1,5 @@
+import data
+import display
 """
 The main program should use functions from data and display modules
 """
@@ -41,6 +43,19 @@ def main():
     You should create new functions and call them from main whenever it can
     make the code cleaner
     """
+    print("Hello to JERZYBOT. Please select Your option.")
+    print("1 --> Create new student.")
+    print("2 --> Delete student.")
+    print("3 --> Select student.")
+    print("4 --> Print all students.")
+    print("0 --> Create new student.")
+    while True:
+        users_choice = int(input("Choose:"))
+        if users_choice not in [1, 2, 3, 4, 0]:
+            continue
+        else:
+            break
+    
 
 
 if __name__ == '__main__':
