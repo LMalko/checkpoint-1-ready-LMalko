@@ -31,10 +31,9 @@ def delete_student_by_id(students, uid):
     :returns: updated students list
     :rtype: list
     """
-    #with open(students, "a") as myfile:
-
-
-    #delete_student_by_id(class_data.txt, uid)
+    for line in students:
+        if line[0] == uid:
+            students.remove(line)
 
 
 def main():
@@ -47,33 +46,38 @@ def main():
     You should create new functions and call them from main whenever it can
     make the code cleaner
     """
-
-    print("Hello to JERZYBOT. Please select Your option.")
-    menu_commands = ["Create new student.", "Delete student.", "Select student.",
-                     "Print all students.", "Create new student."]
-    display.print_program_menu(menu_commands)
     while True:
-        users_choice = input("Choose:")
-        if users_choice not in ["0", "1", "2", "3", "4"]:
-            print("Please choose correct number.")
-            continue
-        else:
-            break
-    if users_choice == "0":
-        print("Create new student.")
-    if users_choice == "1":
-        print("Delete student.")
-    if users_choice == "2":
+        print("Hello to JERZYBOT. Please select Your option.")
+        menu_commands = ["Create new student.", "Delete student.", "Select student.",
+                        "Print all students.", "Quit."]
+        display.print_program_menu(menu_commands)
         student_data = data.import_data_from_file('class_data.txt')
-        display.print_student_info(student_data)
-    if users_choice == "3":
-        student_data = data.import_data_from_file('class_data.txt')
-        display.print_students_list(student_data)
-    if users_choice == "4":
-        quit()
-    display.print_command_result(users_choice)
+        while True:
+            users_choice = input("Choose:")
+            if users_choice not in ["0", "1", "2", "3", "4"]:
+                print("Please choose correct number.")
+                continue
+            else:
+                break
+        if users_choice == "0":
+            print("Create new student. Available soon!")
+        if users_choice == "1":
+            print("Delete student.")
+            uid = input("Choose id: ")
+            for line in student_data:
+                if line[0] == uid:
+                    student_data.remove(line)
+        if users_choice == "2":
+            selected_student = input("Choose_student")
+            for line in student_data:
+                if line[0] == selected_student:
+                    print(" ".join(line))
+        if users_choice == "3":
+            display.print_students_list(student_data)
+        if users_choice == "4":
+            quit()
+        display.print_command_result(users_choice)
     
-
 
 if __name__ == '__main__':
     main()
