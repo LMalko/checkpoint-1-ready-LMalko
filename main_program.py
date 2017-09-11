@@ -46,12 +46,12 @@ def main():
     You should create new functions and call them from main whenever it can
     make the code cleaner
     """
+    student_data = data.import_data_from_file('class_data.txt')
     while True:
         print("Hello to JERZYBOT. Please select Your option.")
         menu_commands = ["Create new student.", "Delete student.", "Select student.",
                         "Print all students.", "Quit."]
         display.print_program_menu(menu_commands)
-        student_data = data.import_data_from_file('class_data.txt')
         while True:
             users_choice = input("Choose:")
             if users_choice not in ["0", "1", "2", "3", "4"]:
